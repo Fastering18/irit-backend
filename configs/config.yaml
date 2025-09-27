@@ -1,0 +1,10 @@
+# File: configs/config.yaml
+
+database:
+  dsn: "irit.db" # Nama file database SQLite
+
+server:
+  url: "0.0.0.0:8080"
+
+jwt:
+  secret: "rahasia123"
