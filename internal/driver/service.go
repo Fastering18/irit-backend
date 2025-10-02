@@ -14,7 +14,6 @@ import (
 type Service interface {
 	RegisterDriver(input RegisterDriverInput) (*Driver,  *ResponseError)
 	LoginDriver(input LoginDriverInput) (string,  *ResponseError)
-	UpdateLocation(driverID uint, input UpdateLocationInput)  *ResponseError
 	GetDriverByID(id uint) (*Driver,  *ResponseError)
 }
 
@@ -92,24 +91,6 @@ func (s *service) LoginDriver(input LoginDriverInput) (string, *ResponseError) {
 		return "", ErrInternalServer
 	}
 	return signedToken, nil
-}
-
-func (s *service) UpdateLocation(driverID uint, input UpdateLocationInput) *ResponseError {
-	driver, err := s.repo.FindByID(driverID)
-	if err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return ErrDriverNotFound
-		}
-		return ErrInternalServer
-	}
-
-	driver.Latitude = input.Latitude
-	driver.Longitude = input.Longitude
-
-	if err := s.repo.Update(driver); err != nil {
-		return ErrInternalServer
-	}
-	return nil
 }
 
 func (s *service) GetDriverByID(id uint) (*Driver, *ResponseError) {

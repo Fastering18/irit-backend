@@ -39,7 +39,7 @@ func (s *service) CreateBooking(userID uint, input CreateBookingInput) (*Booking
 		if err := s.repo.Delete(existingBooking); err != nil {
 			return nil, ErrInternalServer
 		}
-	} else {
+	} else if existingBooking.ID != 0 {
 		return nil, ErrUserOnActiveBooking
 	}
 

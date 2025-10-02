@@ -80,39 +80,7 @@ func (h *Handler) Account(c *gin.Context) {
 		"name":           user.Name,
 		"email":          user.Email,
 		"license_number": user.LicenseNumber,
-		"position": gin.H{
-			"latitude":  user.Latitude,
-			"longitude": user.Longitude,
-		},
 	})
-}
-
-func (h *Handler) UpdateLocation(c *gin.Context) {
-	driverID, exists := c.Get("driverID")
-	if !exists {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Failed to get driver from token"})
-		return
-	}
-
-	id, ok := driverID.(uint)
-	if !ok {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid driver ID format in token"})
-		return
-	}
-
-	var input UpdateLocationInput
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid request format"})
-		return
-	}
-
-	err := h.driverService.UpdateLocation(id, input)
-	if err != nil {
-		c.JSON(err.Code, gin.H{"error": err.Error()})
-		return
-	}
-
-	c.JSON(http.StatusOK, gin.H{"message": "Location updated successfully"})
 }
 
 func RegisterRoutes(router *gin.Engine, service Service, authMiddleware gin.HandlerFunc) {
@@ -127,7 +95,6 @@ func RegisterRoutes(router *gin.Engine, service Service, authMiddleware gin.Hand
 		authorized.Use(authMiddleware)
 		{
 			authorized.GET("/account", handler.Account)
-			authorized.POST("/location", handler.UpdateLocation)
 		}
 	}
 }

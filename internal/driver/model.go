@@ -14,8 +14,6 @@ type Driver struct {
 	Password      string  `gorm:"not null"`
 	LicenseNumber string  `gorm:"unique;not null"`
 	IsAvailable   bool    `gorm:"default:true"`
-	Latitude      float64
-	Longitude     float64
 }
 
 type Claims struct {
