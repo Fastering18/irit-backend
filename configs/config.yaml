@@ -1,7 +1,7 @@
 # File: configs/config.yaml
 
 database:
-  dsn: "root:sch!ADV25_kel2@tcp(127.0.0.1:3306)/irits_db?charset=utf8mb4&parseTime=True&loc=Local" # "irit.db" sqlite
+  dsn:  "irit.db" #"root:sch!ADV25_kel2@tcp(127.0.0.1:3306)/irits_db?charset=utf8mb4&parseTime=True&loc=Local" # "irit.db" sqlite
 
 server:
   url: "0.0.0.0:8080"

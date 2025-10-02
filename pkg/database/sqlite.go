@@ -1,15 +1,15 @@
-// File: pkg/database/mysql.go
+// File: pkg/database/sqlite.go
 
 package database
 
 import (
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
 // Initialize membuat dan mengembalikan koneksi database GORM.
 func Initialize(dsn string) (*gorm.DB, error) {
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{}) 
+	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{}) 
 	if err != nil {
 		return nil, err
 	}

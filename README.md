@@ -26,7 +26,6 @@ Ahmad Zaki Fauzan Nabil
       Pastikan Anda sudah menginstal software berikut:
       <ul>
         <li><a href="https://go.dev/doc/install">Go (versi 1.18 atau lebih baru)</a></li>
-        <li>Server <a href="https://dev.mysql.com/downloads/installer/">MySQL</a></li>
         <li><a href="https://git-scm.com/downloads">Git</a> untuk mengambil kode dari repository</li>
       </ul>
       <br><br>
@@ -40,27 +39,18 @@ cd irit-backend</code></pre>
     </li>
     <li>
       <strong>3. Konfigurasi Koneksi Database</strong><br>
-      Buka file <code>configs/config.yaml</code> lalu edit <code>dsn</code> agar sesuai dengan konfigurasi MySQL lokal Anda.
-      <pre><code>database:
-  # Format: user:password@tcp(host:port)/dbname?charset=utf8mb4&parseTime=True&loc=Local
-  dsn: "root:passwordanda@tcp(127.0.0.1:3306)/irits_db?charset=utf8mb4&parseTime=True&loc=Local"</code></pre>
+      Buka file <code>configs/config.yaml</code> lalu edit <code>dsn</code> untuk lokasi penyimpanan file sqlite
+      <pre><code>database: "irit.db"</code></pre>
       <br><br>
     </li>
     <li>
-      <strong>4. Buat Database di MySQL</strong><br>
-      Sebelum menjalankan aplikasi, database <code>irits_db</code> harus sudah ada. Buka MySQL Workbench atau command line, dan jalankan kueri berikut:
-      <pre><code>CREATE DATABASE irits_db;</code></pre>
-      note: tabel akan otomatis di generate program (AutoMigrate).
-      <br><br>
-    </li>
-    <li>
-      <strong>5. Install Dependencies</strong><br>
+      <strong>4. Install Dependencies</strong><br>
       Unduh package Golang yang diperlukan.
       <pre><code>go mod tidy</code></pre>
       <br><br>
     </li>
     <li>
-      <strong>6. Jalankan Aplikasi Backend</strong><br>
+      <strong>5. Jalankan Aplikasi Backend</strong><br>
       Setelah semua persiapan selesai, jalankan server dengan perintah berikut:
       <pre><code>go run cmd/api/main.go</code></pre>
       Jika berhasil, Anda akan melihat output di terminal yang mirip seperti ini dan siap untuk testing.
