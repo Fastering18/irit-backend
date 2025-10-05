@@ -7,7 +7,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// Initialize membuat dan mengembalikan koneksi database GORM.
 func Initialize(dsn string) (*gorm.DB, error) {
 	db, err := gorm.Open(sqlite.Open(dsn), &gorm.Config{}) 
 	if err != nil {

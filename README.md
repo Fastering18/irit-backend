@@ -22,7 +22,7 @@ Ahmad Zaki Fauzan Nabil
   <summary>Cara Menjalankan Backend IRiT</summary>
   <ul>
     <li>
-      <strong>1. Prasyarat: Instalasi Go & MySQL</strong><br>
+      <strong>1. Install Golang & git</strong><br>
       Pastikan Anda sudah menginstal software berikut:
       <ul>
         <li><a href="https://go.dev/doc/install">Go (versi 1.18 atau lebih baru)</a></li>
@@ -40,7 +40,7 @@ cd irit-backend</code></pre>
     <li>
       <strong>3. Konfigurasi Koneksi Database</strong><br>
       Buka file <code>configs/config.yaml</code> lalu edit <code>dsn</code> untuk lokasi penyimpanan file sqlite
-      <pre><code>database: "irit.db"</code></pre>
+      <pre><code>dsn: "irit.db"</code></pre>
       <br><br>
     </li>
     <li>
@@ -56,8 +56,8 @@ cd irit-backend</code></pre>
       Jika berhasil, Anda akan melihat output di terminal yang mirip seperti ini dan siap untuk testing.
       <pre><code>2025/10/03 10:00:00 Koneksi database berhasil.
 2025/10/03 10:00:00 Migrasi database berhasil.
-2025/10/03 10:00:00 Semua routes telah didaftarkan.
-2025/10/03 10:00:00 Server berjalan di :8080</code></pre>
+2025/10/03 10:00:00 Routes telah didaftarkan.
+2025/10/03 10:00:00 Server berjalan di 0.0.0.0:8080</code></pre>
       <br>
     </li>
   </ul>
