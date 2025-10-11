@@ -28,12 +28,6 @@ func main() {
 	}
 	log.Println("Koneksi database berhasil.")
 
-	err = db.AutoMigrate(&user.User{}, &driver.Driver{}, &booking.Booking{})
-	if err != nil {
-		log.Fatalf("Gagal melakukan migrasi database: %v", err)
-	}
-	log.Println("Migrasi database berhasil.")
-
 	// User
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository, cfg.JWT.Secret)
@@ -58,12 +52,6 @@ func main() {
 
 	serverAddress := cfg.Server.URL
 	log.Printf("Server berjalan di %s", serverAddress)
-
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
 
 	if err := router.Run(serverAddress); err != nil {
 		log.Fatalf("Gagal menjalankan server Gin: %v", err.Error())
